@@ -26,6 +26,7 @@ FILES		= 	ft_atoi.c  			\
 				ft_isdigit.c		\
 				ft_isprint.c		\
 				ft_isxx2.c 			\
+				ft_malloc.c			\
 				ft_memccpy.c		\
 				ft_memchr.c			\
 				ft_memcmp.c			\
@@ -54,8 +55,7 @@ FILES		= 	ft_atoi.c  			\
 				ft_strmapi.c		\
 				ft_split.c			\
 				ft_putendl_fd.c		\
-
-BONUS		=	ft_lstdelone.c		\
+				ft_lstdelone.c		\
 				ft_lstsize.c		\
 				ft_lstlast.c		\
 				ft_lstclear.c		\
@@ -64,8 +64,8 @@ BONUS		=	ft_lstdelone.c		\
 				ft_lstadd_back.c	\
 				ft_lstadd_front.c	\
 				ft_lstmap.c			\
+				get_next_line.c		\
 
-BON			= ${BONUS:.c=.o}	
 
 OBJS		= ${FILES:.c=.o}
 
@@ -88,10 +88,6 @@ fclean: clean
 				@rm -f $(NAME)
 				@echo "${KILL_COLOR}lib deleted"
 				@echo "${NO_COLOR}"
-
-bonus: 	${OBJS} ${BON}
-			ar -cr $(NAME) $(OBJS) ${BON} libft.h 
-			@echo "${OK_COLOR}lib + bonus created and ready"
 
 re:		fclean all
 

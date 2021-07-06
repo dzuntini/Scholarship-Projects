@@ -6,7 +6,7 @@
 /*   By: dzuntini <dzuntini@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 09:46:50 by dzuntini          #+#    #+#             */
-/*   Updated: 2021/07/06 16:16:02 by dzuntini         ###   ########.fr       */
+/*   Updated: 2021/07/06 18:37:10 by dzuntini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdlib.h>
+# include "get_next_line.h"
 
 typedef struct s_list
 {
@@ -39,6 +40,7 @@ void			ft_lstadd_front(t_list **alst, t_list *new);
 
 char			**ft_split(char const *s, char c);
 
+void			*ft_malloc(int size);
 void			*ft_memset(void *b, int c, size_t len);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
@@ -51,6 +53,7 @@ size_t			ft_strlcat(char *dst, char *src, size_t dstsize);
 size_t			ft_strlcpy(char *dst, char *src, size_t dstsize);
 
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
+int				get_next_line(int fd, char **line);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
 int				ft_atoi(const char *str);
 int				ft_isalpha(int c);
