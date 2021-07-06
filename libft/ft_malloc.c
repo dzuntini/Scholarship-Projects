@@ -6,13 +6,13 @@
 /*   By: dzuntini <dzuntini@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 13:01:54 by dzuntini          #+#    #+#             */
-/*   Updated: 2021/07/06 18:37:26 by dzuntini         ###   ########.fr       */
+/*   Updated: 2021/07/06 18:51:22 by dzuntini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_malloc(int size)
+void	*ft_malloc(int size)
 {
 	char	*s;
 

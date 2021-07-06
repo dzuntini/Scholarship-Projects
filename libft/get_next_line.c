@@ -6,15 +6,15 @@
 /*   By: dzuntini <dzuntini@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/27 08:45:05 by dzuntini          #+#    #+#             */
-/*   Updated: 2021/02/20 13:21:53 by dzuntini         ###   ########.fr       */
+/*   Updated: 2021/07/06 18:50:42 by dzuntini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char			*ft_strncpy(char *dest, char *src, unsigned int n)
+char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	if (!dest || !src)
@@ -30,7 +30,7 @@ char			*ft_strncpy(char *dest, char *src, unsigned int n)
 	return (dest);
 }
 
-char			*ft_add_to_line(char *line, int end, char *buff, int *start)
+char	*ft_add_to_line(char *line, int end, char *buff, int *start)
 {
 	char	*tmp;
 	int		linelen;
@@ -52,7 +52,7 @@ char			*ft_add_to_line(char *line, int end, char *buff, int *start)
 	return (tmp);
 }
 
-int				ft_get_next_line(int fd, t_struct *t)
+int	ft_get_next_line(int fd, t_struct *t)
 {
 	int				end;
 
@@ -80,7 +80,7 @@ int				ft_get_next_line(int fd, t_struct *t)
 	}
 }
 
-int				get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	int				status;
 	static t_struct	t[255];

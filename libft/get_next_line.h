@@ -6,7 +6,7 @@
 /*   By: dzuntini <dzuntini@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 12:56:53 by dzuntini          #+#    #+#             */
-/*   Updated: 2021/07/06 18:36:40 by dzuntini         ###   ########.fr       */
+/*   Updated: 2021/07/06 18:50:52 by dzuntini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 # define BUFFER_SIZE 4096
 
-typedef	struct	s_struct
+typedef struct s_struct
 {
 	char	buffer[BUFFER_SIZE + 1];
 	char	*line;
@@ -27,7 +27,6 @@ typedef	struct	s_struct
 	int		nbinbuff;
 
 }				t_struct;
-
 
 int				ft_get_next_line(int fd, t_struct *t);
 char			*ft_add_to_line(char *line, int end, char *buff, int *start);
