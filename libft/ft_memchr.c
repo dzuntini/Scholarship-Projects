@@ -6,7 +6,7 @@
 /*   By: dzuntini <dzuntini@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 12:46:43 by dzuntini          #+#    #+#             */
-/*   Updated: 2021/01/19 13:12:29 by dzuntini         ###   ########.fr       */
+/*   Updated: 2021/07/06 16:12:10 by dzuntini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t				i;
-	unsigned	char	*str;
+	size_t			i;
+	unsigned char	*str;
 
 	str = (unsigned char *)s;
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: dzuntini <dzuntini@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 16:05:47 by dzuntini          #+#    #+#             */
-/*   Updated: 2021/01/19 16:40:26 by dzuntini         ###   ########.fr       */
+/*   Updated: 2021/07/06 16:43:01 by dzuntini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 size_t	ft_strlcpy(char *dst, char *src, size_t dstsize)
 {
-	unsigned int ft_size;
-	unsigned int j;
+	unsigned int	ft_size;
+	unsigned int	j;
 
 	ft_size = ft_strlen(src);
 	if (ft_size + 1 < dstsize)

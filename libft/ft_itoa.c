@@ -6,7 +6,7 @@
 /*   By: dzuntini <dzuntini@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 09:34:39 by dzuntini          #+#    #+#             */
-/*   Updated: 2021/01/23 11:11:32 by dzuntini         ###   ########.fr       */
+/*   Updated: 2021/07/06 16:48:33 by dzuntini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static long	ft_calclen(long n)
 {
-	long ten;
+	long	ten;
 
 	ten = 1;
 	while (n >= 10)
@@ -25,7 +25,7 @@ static long	ft_calclen(long n)
 	return (ten);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	int					i;
 	int					ten;
@@ -33,12 +33,12 @@ char		*ft_itoa(int n)
 	long				nbr;
 
 	i = 0;
-	if (!(nb = ft_calloc(13, sizeof(char))))
+	nb = ft_calloc(13, sizeof(char));
+	if (nb == NULL)
 		return (NULL);
 	if (n < 0)
 	{
-		nbr = (long)n;
-		nbr = -nbr;
+		nbr = -((long)n);
 		nb[i++] = '-';
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: dzuntini <dzuntini@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 16:09:42 by dzuntini          #+#    #+#             */
-/*   Updated: 2021/01/19 16:42:05 by dzuntini         ###   ########.fr       */
+/*   Updated: 2021/07/06 16:41:52 by dzuntini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*ft_strnstr(const char *s, const char *n, size_t len)
 {
-	size_t istr;
-	size_t itfnd;
-	size_t srchi;
+	size_t	istr;
+	size_t	itfnd;
+	size_t	srchi;
 
 	if (n[0] == '\0')
 		return ((char *)s);

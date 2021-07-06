@@ -6,15 +6,15 @@
 /*   By: dzuntini <dzuntini@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 11:54:33 by dzuntini          #+#    #+#             */
-/*   Updated: 2021/01/23 11:12:40 by dzuntini         ###   ########.fr       */
+/*   Updated: 2021/07/06 16:41:00 by dzuntini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int		ft_ischarset(char c, char const *cs)
+static	int	ft_ischarset(char c, char const *cs)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (cs[i])
@@ -26,11 +26,11 @@ static	int		ft_ischarset(char c, char const *cs)
 	return (0);
 }
 
-static	int		ft_checkcases(char const *s1, char const *s2)
+static int	ft_checkcases(char const *s1, char const *s2)
 {
-	int i;
-	int c;
-	int l;
+	int	i;
+	int	c;
+	int	l;
 
 	i = 0;
 	c = 0;
@@ -50,15 +50,16 @@ static	int		ft_checkcases(char const *s1, char const *s2)
 
 static	char	*ft_strempty(void)
 {
-	char *str;
+	char	*str;
 
-	if (!(str = malloc(1 * sizeof(char))))
+	str = malloc(1 * sizeof(char));
+	if (!(str))
 		return (NULL);
 	str[0] = '\0';
 	return (str);
 }
 
-char			*ft_strtrim(char const *s1, char const *s2)
+char	*ft_strtrim(char const *s1, char const *s2)
 {
 	int		l;
 	size_t	i;
@@ -77,7 +78,8 @@ char			*ft_strtrim(char const *s1, char const *s2)
 		while (ft_ischarset(s1[l], s2))
 			l--;
 		l++;
-		if ((str = ft_substr((char *)s1, i, l - i)))
+		str = ft_substr((char *)s1, i, l - i);
+		if (str)
 			return (str);
 		else
 			return (NULL);

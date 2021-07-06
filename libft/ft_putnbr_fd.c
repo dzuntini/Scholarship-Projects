@@ -6,7 +6,7 @@
 /*   By: dzuntini <dzuntini@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 23:01:50 by dzuntini          #+#    #+#             */
-/*   Updated: 2021/01/20 16:58:27 by dzuntini         ###   ########.fr       */
+/*   Updated: 2021/07/06 16:46:47 by dzuntini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putnbr_fd(int nb, int fd)
 {
-	unsigned int n;
+	unsigned int	n;
 
 	if (nb < 0)
 	{

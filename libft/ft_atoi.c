@@ -6,17 +6,17 @@
 /*   By: dzuntini <dzuntini@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 15:40:09 by dzuntini          #+#    #+#             */
-/*   Updated: 2021/01/23 11:10:53 by dzuntini         ###   ########.fr       */
+/*   Updated: 2021/07/06 16:03:00 by dzuntini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	long	long	int		total;
-	int						n;
-	int						i;
+	long long int	total;
+	int				n;
+	int				i;
 
 	total = 0;
 	n = 0;

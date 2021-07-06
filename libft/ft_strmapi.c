@@ -6,7 +6,7 @@
 /*   By: dzuntini <dzuntini@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 14:26:15 by dzuntini          #+#    #+#             */
-/*   Updated: 2021/01/21 14:35:26 by dzuntini         ###   ########.fr       */
+/*   Updated: 2021/07/06 16:42:34 by dzuntini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	unsigned	int	i;
+	unsigned int	i;
 	char			*res;
 
 	if (s)

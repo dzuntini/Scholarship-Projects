@@ -6,7 +6,7 @@
 /*   By: dzuntini <dzuntini@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 11:22:57 by dzuntini          #+#    #+#             */
-/*   Updated: 2021/01/21 11:23:31 by dzuntini         ###   ########.fr       */
+/*   Updated: 2021/07/06 16:44:03 by dzuntini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		len = ft_strlen(s1) + ft_strlen(s2) + 1;
 		i = 0;
 		j = 0;
-		if ((str = (char *)malloc(sizeof(*str) * len)))
+		str = (char *)malloc(sizeof(*str) * len);
+		if (str)
 		{
 			while (s1[i])
 			{

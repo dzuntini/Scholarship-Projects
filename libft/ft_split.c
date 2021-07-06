@@ -6,7 +6,7 @@
 /*   By: jpillet <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 17:28:55 by jpillet           #+#    #+#             */
-/*   Updated: 2021/01/22 11:42:29 by dzuntini         ###   ########.fr       */
+/*   Updated: 2021/07/06 16:47:54 by dzuntini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ static char	*ft_add_w(char **str, char c)
 	l = 0;
 	while (str[0][l] && (str[0][l] != c))
 		l++;
-	if (!(word = malloc((l + 1) * sizeof(char))))
+	word = malloc((l + 1) * sizeof(char));
+	if (!(word))
 		return (0);
 	i = 0;
 	while (str[0][0] && (str[0][0] != c))
@@ -53,14 +54,15 @@ static char	*ft_add_w(char **str, char c)
 	return (word);
 }
 
-char		**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**tw;
 	int		nbw;
 	int		cw;
 
 	nbw = ft_nb_w((char *)s, c);
-	if (!(tw = malloc((nbw + 1) * sizeof(char *))))
+	tw = malloc((nbw + 1) * sizeof(char *));
+	if (!(tw))
 		return (0);
 	cw = 0;
 	while (cw < nbw)

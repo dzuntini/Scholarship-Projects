@@ -6,7 +6,7 @@
 /*   By: dzuntini <dzuntini@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 09:46:12 by dzuntini          #+#    #+#             */
-/*   Updated: 2021/01/20 14:54:53 by dzuntini         ###   ########.fr       */
+/*   Updated: 2021/07/06 16:11:49 by dzuntini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		if ((t2[i] = t1[i]) == (unsigned char)c)
+		t2[i] = t1[i];
+		if (t2[i] == (unsigned char)c)
 			return (t2 + ++i);
 		i++;
 	}

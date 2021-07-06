@@ -6,7 +6,7 @@
 /*   By: dzuntini <dzuntini@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/09 16:09:42 by dzuntini          #+#    #+#             */
-/*   Updated: 2021/01/19 15:16:33 by dzuntini         ###   ########.fr       */
+/*   Updated: 2021/07/06 16:43:18 by dzuntini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 size_t	ft_strlcat(char *dst, char *src, size_t dstsize)
 {
-	unsigned int idst;
-	unsigned int lsrc;
+	unsigned int	idst;
+	unsigned int	lsrc;
 
 	idst = 0;
 	while (dst[idst] != '\0')
