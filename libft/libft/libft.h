@@ -6,7 +6,7 @@
 /*   By: dzuntini <dzuntini@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 09:46:50 by dzuntini          #+#    #+#             */
-/*   Updated: 2021/07/08 16:45:32 by dzuntini         ###   ########.fr       */
+/*   Updated: 2021/10/14 16:17:35 by dzuntini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ void			ft_freetab(char **av);
 void			ft_putchar(char c);
 void			ft_putnbr(int nb);
 void			ft_putstr(char *str);
+void			ft_putstrr(char *str);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putnbr_fd(int nb, int fd);
 void			ft_putstr_fd(char *s, int fd);
+void			ft_puterr(char *str);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_bzero(void *s, size_t n);
 void			ft_lstdelone(t_list *alst, void (*del)(void *));
@@ -54,9 +56,12 @@ size_t			ft_strlcat(char *dst, char *src, size_t dstsize);
 size_t			ft_strlcpy(char *dst, char *src, size_t dstsize);
 
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
+int				ft_check_end(char *file, char *ext);
 int				get_next_line(int fd, char **line);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
 int				ft_atoi(const char *str);
+int				ft_iferror(int cond, char *string);
+int				ft_iferrorfree(int cond, char *string, void *fr);
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
 int				ft_isprint(int c);
