@@ -1,0 +1,14 @@
+<div class="login">
+  <div class="row">
+    <h1>{{error}}</h1>
+  </div>
+  <div class="row">
+    <form [formGroup]="twofa" (ngSubmit)="authy()" >
+        <mat-form-field appearance="fill" style="margin-bottom: -1.25em" [style.width.%]="100">
+        <mat-label>Authentification Code</mat-label>
+        <input matInput id="pseudo" type="text" formControlName="code">
+        </mat-form-field>
+        <button mat-raised-button type="submit" [style.width.%]="100" color="primary">Submit</button>
+    </form>
+  </div>
+</div>

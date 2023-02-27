@@ -1,0 +1,296 @@
+<app-navigation-bar [src]="myFace"></app-navigation-bar>
+<div class="mat-elevation-z8" style="height: 100%; overflow-y: scroll;" (window:resize)="handleSize($event)">
+  <span *ngIf="mine; else notMine">
+    <span *ngIf="responsive; else unResponsiveBlock">
+      <mat-grid-list id="profile-grid" cols="6" rowHeight="300px">
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="4" rowspan="1">
+          <mat-grid-tile-header class="profile-section-header">
+            {{ user.login }} aka "{{ user.pseudo }}"
+          </mat-grid-tile-header>
+          <div class="avatar" [style.width.px]="150" [style.height.px]="150">
+            <img class="avatar__image" [src]="src"/>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="2"></mat-grid-tile>
+        <mat-grid-tile colspan="4" rowspan="2">
+          <mat-grid-tile-header class="profile-section-header">
+            Information
+          </mat-grid-tile-header>
+          <div id="unres-friend-list-container" >
+            <mat-tab-group (selectedTabChange)="refresh($event)">
+              <mat-tab label="Friend List" class="mat-tab-text-label">
+                <app-profile-friendlist [friendlist]="friendlist" [responsive]="responsive"></app-profile-friendlist>
+              </mat-tab>
+              <mat-tab label="Games" class="mat-tab-text-label">
+                <app-profile-games [gameslist]="gamelist" [responsive]="responsive"></app-profile-games>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="2"></mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="4" rowspan="1">
+          <mat-grid-tile-header class="profile-section-header">
+            Stats
+          </mat-grid-tile-header>
+          <h1 style="align-items: center; text-align: center;">
+            Elo: {{ user.elo }} <br />
+            Games Played: {{ user.nb_played_game }} <br />
+            Games Won: {{ user.nb_victory }} <br />
+            Games Lost: {{ user.nb_defeat }}
+          </h1>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="4" rowspan="1">
+          <mat-grid-tile-header class="profile-section-header">
+            Change Pseudo:
+          </mat-grid-tile-header>
+          <form [formGroup]="respseudochange" (ngSubmit)="reschangePseudo()" >
+            <mat-form-field appearance="fill" style="margin-bottom: -1.25em" [style.width.%]="100">
+              <mat-label>New Pseudo{{perror}}</mat-label>
+              <input matInput id="pseudo" type="text" formControlName="pseudo" >
+            </mat-form-field>
+            <button mat-raised-button type="submit" [style.width.%]="100" color="primary">Submit</button>
+          </form>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="4" rowspan="1">
+          <mat-grid-tile-header class="profile-section-header">
+            2 Factor Authentication
+          </mat-grid-tile-header>
+          <div class="image-container">
+            <img [src]="qrcode" [style.width.px]="150" [style.height.px]="150"/>
+            <form [formGroup]="res2fatoggler" (ngSubmit)="res2faToggler()" >
+              <mat-form-field appearance="fill" style="margin-bottom: -1.25em" [style.width.%]="100">
+                <mat-label>Code{{error}}</mat-label>
+                <input matInput id="code" type="text" formControlName="code" maxlength="6" minlength="6">
+              </mat-form-field>
+              <span *ngIf="user.twoFactorAuthEnabled;else res2authblock">
+                <button mat-raised-button type="submit" [style.width.%]="100" color="primary">Disable</button>
+              </span>
+              <ng-template #res2authblock>
+                <button mat-raised-button type="submit" [style.width.%]="100" color="primary">Enable</button>
+              </ng-template>
+            </form>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="4" rowspan="1">
+          <mat-grid-tile-header class="profile-section-header">
+            Change Profile Picture
+          </mat-grid-tile-header>
+          <input type="file" style="display:none;" class="file-input" (change)="changeImage($event)" #fileUpload>
+          <div class="file-upload">
+            {{image || "No file uploaded yet."}}
+            <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+            <mat-icon>attach_file</mat-icon>
+            </button>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </span>
+    <ng-template #unResponsiveBlock>
+      <mat-grid-list id="profile-grid" cols="11" rowHeight="275px">
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="4" rowspan="1">
+          <mat-grid-tile-header class="profile-section-header">
+            {{ user.login }} aka "{{ user.pseudo }}"
+          </mat-grid-tile-header>
+          <div class="avatar" [style.width.px]="150" [style.height.px]="150">
+            <img class="avatar__image" [src]="src"/>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="4" rowspan="3">
+          <div id="res-friend-list-container">
+            <mat-grid-tile-header class="profile-section-header">
+              Information
+            </mat-grid-tile-header>
+            <mat-tab-group (selectedTabChange)="refresh($event)">
+              <mat-tab label="Friend List" class="mat-tab-text-label">
+                <app-profile-friendlist [friendlist]="friendlist" [responsive]="responsive"></app-profile-friendlist>
+              </mat-tab>
+              <mat-tab label="Games" class="mat-tab-text-label">
+                <app-profile-games [gameslist]="gamelist" [responsive]="responsive"></app-profile-games>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="1">
+          <mat-grid-tile-header class="profile-section-header">
+            Stats
+          </mat-grid-tile-header>
+          <h1 style="align-items: center; text-align: center;">
+            Elo: {{ user.elo }} <br />
+            Games Played: {{ user.nb_played_game }} <br />
+            Games Won: {{ user.nb_victory }} <br />
+            Games Lost: {{ user.nb_defeat }}
+          </h1>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="1">
+          <mat-grid-tile-header class="profile-section-header">
+            Change Pseudo:
+          </mat-grid-tile-header>
+          <form [formGroup]="unrespseudochange" (ngSubmit)="unreschangePseudo()" >
+            <mat-form-field appearance="fill" style="margin-bottom: -1.25em" [style.width.%]="100">
+              <mat-label>New Pseudo{{perror}}</mat-label>
+              <input matInput id="pseudo" type="text" formControlName="pseudo">
+            </mat-form-field>
+            <button mat-raised-button type="submit" [style.width.%]="100" color="primary">Submit</button>
+          </form>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="1">
+          <mat-grid-tile-header class="profile-section-header">
+            2 Factor Authentication
+          </mat-grid-tile-header>
+          <div class="image-container">
+            <img [src]="qrcode" [style.width.px]="150" [style.height.px]="150"/>
+            <form [formGroup]="unres2fatoggler" (ngSubmit)="unres2faToggler()" >
+              <mat-form-field appearance="fill">
+                <mat-label>Code{{error}}</mat-label>
+                <input matInput id="code" type="text" formControlName="code" maxlength="6" minlength="6">
+              </mat-form-field>
+              <span *ngIf="user.twoFactorAuthEnabled;else unres2authblock">
+                <button mat-raised-button type="submit" color="primary">Disable</button>
+              </span>
+              <ng-template #unres2authblock>
+                <button mat-raised-button type="submit" color="primary">Enable</button>
+              </ng-template>
+            </form>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="1">
+          <mat-grid-tile-header class="profile-section-header">
+            Change Profile Picture
+          </mat-grid-tile-header>
+          <input type="file" style="display:none;" class="file-input" (change)="changeImage($event)" #fileUpload>
+          <div class="file-upload">
+            {{ image || "No file uploaded yet." }}
+            <button mat-mini-fab color="primary" class="upload-btn" (click)="fileUpload.click()">
+              <mat-icon>attach_file</mat-icon>
+            </button>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="11" rowspan="1"></mat-grid-tile>
+      </mat-grid-list>
+    </ng-template>
+  </span>
+  <ng-template #notMine>
+    <span *ngIf="responsive; else unResponsiveBlock">
+      <mat-grid-list id="profile-grid" cols="6" rowHeight="275px">
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="4" rowspan="1">
+          <mat-grid-tile-header class="profile-section-header">
+            {{ user.login }} aka "{{ user.pseudo }}"
+          </mat-grid-tile-header>
+          <div class="avatar" [style.width.px]="150" [style.height.px]="150">
+            <img class="avatar__image" [src]="src"/>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="2"></mat-grid-tile>
+        <mat-grid-tile colspan="4" rowspan="2">
+          <mat-grid-tile-header class="profile-section-header">
+            Information
+          </mat-grid-tile-header>
+          <div id="unres-friend-list-container">
+            <mat-tab-group (selectedTabChange)="refresh($event)">
+              <mat-tab label="First" class="mat-tab-text-label">
+                <app-profile-friendlist [friendlist]="friendlist" [responsive]="responsive"></app-profile-friendlist></mat-tab>
+              <mat-tab label="Games" class="mat-tab-text-label">
+                <app-profile-games [gameslist]="gamelist" [responsive]="responsive"></app-profile-games>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="2"></mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="4" rowspan="1">
+          <mat-grid-tile-header class="profile-section-header">
+            Stats
+          </mat-grid-tile-header>
+          <h1 style="align-items: center; text-align: center;">
+            Elo: {{ user.elo }} <br />
+            Games Played: {{ user.nb_played_game }} <br />
+            Games Won: {{ user.nb_victory }} <br />
+            Games Lost: {{ user.nb_defeat }}
+          </h1>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="4" rowspan="1">
+          <mat-grid-tile-header class="profile-section-header">
+            Actions
+          </mat-grid-tile-header>
+          <button *ngIf="!ishemyfriend && !isheblocked" mat-raised-button color="primary" (click)="block()">Block</button>
+          <button *ngIf="!ishemyfriend && isheblocked" mat-raised-button color="primary" (click)="unblock()">UnBlock</button>
+          <button *ngIf="!ishemyfriend && !isheblocked" mat-raised-button color="primary" (click)="addFriend()">Add Friend</button>
+          <button *ngIf="ishemyfriend && !isheblocked" mat-raised-button color="primary" (click)="removeFriend()">Remove Friend</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </span>
+    <ng-template #unResponsiveBlock>
+      <mat-grid-list id="profile-grid" cols="11" rowHeight="275px">
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="4" rowspan="1">
+          <mat-grid-tile-header class="profile-section-header">
+            {{ user.login }} aka "{{ user.pseudo }}"
+          </mat-grid-tile-header>
+          <div class="avatar" [style.width.px]="150" [style.height.px]="150">
+            <img class="avatar__image" [src]="src"/>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="4" rowspan="3">
+          <mat-grid-tile-header class="profile-section-header">
+            Information
+          </mat-grid-tile-header>
+          <div id="res-friend-list-container">
+            <mat-tab-group (selectedTabChange)="refresh($event)">
+              <mat-tab label="Friend List" class="mat-tab-text-label">
+                <app-profile-friendlist [friendlist]="friendlist" [responsive]="responsive"></app-profile-friendlist>
+              </mat-tab>
+              <mat-tab label="Games" class="mat-tab-text-label">
+                <app-profile-games [gameslist]="gamelist" [responsive]="responsive"></app-profile-games>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="1" rowspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="1">
+          <mat-grid-tile-header class="profile-section-header">
+            Stats
+          </mat-grid-tile-header>
+          <h1 style="align-items: center; text-align: center;">
+            Elo: {{ user.elo }} <br />
+            Games Played: {{ user.nb_played_game }} <br />
+            Games Won: {{ user.nb_victory }} <br />
+            Games Lost: {{ user.nb_defeat }}
+          </h1>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="1">
+          <mat-grid-tile-header class="profile-section-header">
+            Actions
+          </mat-grid-tile-header>
+          <button *ngIf="!ishemyfriend && !isheblocked" mat-raised-button color="primary" (click)="block()">Block</button>
+          <button *ngIf="!ishemyfriend && isheblocked" mat-raised-button color="primary" (click)="unblock()">UnBlock</button>
+          <button *ngIf="!ishemyfriend && !isheblocked" mat-raised-button color="primary" (click)="addFriend()">Add Friend</button>
+          <button *ngIf="ishemyfriend && !isheblocked" mat-raised-button color="primary" (click)="removeFriend()">Remove Friend</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </ng-template>
+  </ng-template>
+</div>

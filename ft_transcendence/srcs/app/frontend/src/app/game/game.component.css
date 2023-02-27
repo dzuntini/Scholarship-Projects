@@ -1,0 +1,118 @@
+.game-wrapper {
+	height: 93.5vh;
+	width: 100vw;
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+
+.winner {
+	height: 15%;
+	font-size: large;
+	font-weight: bolder;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+
+.errorForm {
+  color: red;
+}
+
+.game {
+	aspect-ratio: 17/14;
+	position: relative;
+	max-width: 100%;
+	max-height: 100%;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	top: 50%;
+	transform: translateY(-50%);
+	overflow: hidden;
+	-o-object-fit: contain;
+	object-fit: contain;
+}
+
+.game-settings {
+	z-index: 1000;
+	display: flex;
+	flex-direction: column;
+	left: 50%;
+	top: 50%;
+	width: 160px;
+	height: 180px;
+	padding: 10px;
+	transform: translateX(-50%) translateY(-50px);
+	border: 2px solid black;
+	border-radius: 5px;
+	background-color: lightslategray;
+	position: absolute;
+	align-items: center;
+}
+
+.option {
+  color: black;
+}
+
+select {
+	max-height: 24px;
+	max-width: 64px;
+}
+
+.setting {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+*.start {
+	min-width: 64px;
+	min-height: 36px;
+	width: 10%;
+	height: 10%;
+	border: 2px solid black;
+	border-radius: 5px;
+	color: white;
+	background-color: #7b1fa2;
+}
+
+.board {
+	width: 100%;
+	height: 100%;
+	background: green;
+}
+
+@media (orientation: portrait) {
+  @media (max-width: 453px) {
+    .game {
+      transform: translateY(-59%);
+    }
+    @media (max-width: 323px) {
+      .game {
+		transform: translateY(-65%);
+      }
+      @media (max-width: 274px) {
+  	    .game {
+		  transform: translateY(-50%);
+	    }
+  	    @media (max-width: 273px) {
+  	      .game {
+			transform: translateY(-50%);
+		  }
+  	      @media (max-width: 273px) {
+  	        .game {
+			  transform: translateY(-50%);
+		    }
+            @media (max-width: 255px) {
+              .game {
+			    transform: translateY(-70%);
+			  }
+			}
+  	      }
+	    }
+  	  }
+	}
+  }
+}

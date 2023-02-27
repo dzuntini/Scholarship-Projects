@@ -1,0 +1,100 @@
+<span *ngIf="dataSourceGame.data.length > 0; else elseBlock">
+  <span *ngIf="!responsive; else responsiveElseBlock">
+    <table mat-table [dataSource]="dataSourceGame" class="mat-elevation-z8">
+      <ng-container matColumnDef="p1">
+        <th mat-header-cell *matHeaderCellDef>Player 1</th>
+        <td mat-cell *matCellDef="let game">
+          <div class="avatar_container">
+            <span *ngIf="game.p1_score < game.p2_score">
+              <img style="width: 50px; height: 50px; z-index: 50; position: absolute; top: 0px; left:19px;" src="/assets/looser.jpg"/>
+              <img style="width: 50px; height: 50px; z-index: 50; position: absolute; top: 0px; left:-18px; -webkit-transform: scaleX(-1); transform: scaleX(-1);" src="/assets/looser.jpg"/>
+            </span>
+            <div class="avatar" [style.width.px]="50" [style.height.px]="50">
+              <img class="avatar__image" src="data:image/;base64,{{game.p1.avatar}}" (click)="redirect(game.p1.id)" matRipple matRippleColor="dark-grey" style="z-index: 100;"/>
+            </div>
+            <span class='avatar-status-ingame avatar-status-{{game.p1?.id}}'></span>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="p1Score">
+        <th mat-header-cell *matHeaderCellDef>Player 1 Score</th>
+        <td mat-cell *matCellDef="let game">{{game.p1_score}}</td>
+      </ng-container>
+      <ng-container matColumnDef="vs">
+        <th mat-header-cell *matHeaderCellDef>Vs</th>
+        <td mat-cell *matCellDef="let game">{{game.vs}}</td>
+      </ng-container>
+      <ng-container matColumnDef="p2Score">
+        <th mat-header-cell *matHeaderCellDef>Player 2 Score</th>
+        <td mat-cell *matCellDef="let game">{{game.p2_score}}</td>
+      </ng-container>
+      <ng-container matColumnDef="p2">
+        <th mat-header-cell *matHeaderCellDef>Player 2</th>
+        <td mat-cell *matCellDef="let game">
+          <div class="avatar_container">
+            <span *ngIf="game.p1_score > game.p2_score">
+              <img style="width: 50px; height: 50px; z-index: 50; position: absolute; top: 0px; left:18px;" src="/assets/looser.jpg"/>
+              <img style="width: 50px; height: 50px; z-index: 50; position: absolute; top: 0px; left:-16px; -webkit-transform: scaleX(-1); transform: scaleX(-1);" src="/assets/looser.jpg"/>
+            </span>
+            <div class="avatar" [style.width.px]="50" [style.height.px]="50" style="z-index: 100;">
+              <img class="avatar__image" src="data:image/;base64,{{game.p2.avatar}}" (click)="redirect(game.p2.id)" matRipple matRippleColor="dark-grey" style="z-index: 100;"/>
+            </div>
+            <span class='avatar-status-ingame avatar-status-{{game.p2?.id}}'></span>
+          </div>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4"><h1>To MaNy FiLtErS mAtE</h1></td>
+      </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25]" [pageIndex]="pageIndex" [pageSize]="pageSize" [length]="gameslist.length" aria-label="Select friendlist page" (page)="refresh($event)"></mat-paginator>
+  </span>
+  <ng-template #responsiveElseBlock>
+    <table mat-table [dataSource]="dataSourceGame" class="mat-elevation-z8"><ng-container matColumnDef="p1">
+      <th mat-header-cell *matHeaderCellDef>Player 1</th>
+      <td mat-cell *matCellDef="let game">
+        <div class="avatar_container">
+          <span *ngIf="game.p1_score < game.p2_score">
+            <img style="width: 50px; height: 50px; z-index: 50; position: absolute; top: 0px; left:19px;" src="/assets/looser.jpg"/>
+            <img style="width: 50px; height: 50px; z-index: 50; position: absolute; top: 0px; left:-18px; -webkit-transform: scaleX(-1); transform: scaleX(-1);" src="/assets/looser.jpg"/>
+          </span>
+          <div class="avatar" [style.width.px]="50" [style.height.px]="50">
+            <img class="avatar__image" src="data:image/;base64,{{game.p1.avatar}}" (click)="redirect(game.p1.id)" matRipple matRippleColor="dark-grey" style="z-index: 100;"/>
+          </div>
+          <span class='avatar-status-ingame avatar-status-{{game.p1?.id}}'></span>
+        </div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="vs">
+      <th mat-header-cell *matHeaderCellDef>Vs</th>
+      <td mat-cell *matCellDef="let game">{{game.vs}}</td>
+    </ng-container>
+    <ng-container matColumnDef="p2">
+      <th mat-header-cell *matHeaderCellDef>Player 2</th>
+      <td mat-cell *matCellDef="let game">
+        <div class="avatar_container">
+          <span *ngIf="game.p1_score > game.p2_score">
+            <img style="width: 50px; height: 50px; z-index: 50; position: absolute; top: 0px; left:18px;" src="/assets/looser.jpg"/>
+            <img style="width: 50px; height: 50px; z-index: 50; position: absolute; top: 0px; left:-16px; -webkit-transform: scaleX(-1); transform: scaleX(-1);" src="/assets/looser.jpg"/>
+          </span>
+          <div class="avatar" [style.width.px]="50" [style.height.px]="50">
+            <img class="avatar__image" src="data:image/;base64,{{game.p2.avatar}}" (click)="redirect(game.p2.id)" matRipple matRippleColor="dark-grey" style="z-index: 100;"/>
+          </div>
+          <span class='avatar-status-ingame avatar-status-{{game.p2?.id}}'></span>
+        </div>
+      </td>
+    </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4"><h1>To MaNy FiLtErS mAtE</h1></td>
+      </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5]" [pageIndex]="pageIndex" [pageSize]="pageSize" [length]="gameslist.length" aria-label="Select friendlist page"></mat-paginator>
+  </ng-template>
+</span>
+<ng-template #elseBlock>
+  <img src="/assets/illbeyourfriend.png" [style.width.%]="100" alt="Wow, you not play my game?" title="Wow, you not play my game?" />
+</ng-template>

@@ -1,0 +1,71 @@
+<span *ngIf="dataSource.data.length > 0; else elseBlock">
+  <span *ngIf="!responsive; else responsiveElseBlock">
+    <mat-form-field [style.width.%]="100" style="margin-bottom: -1.25em">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="icon">
+        <th mat-header-cell *matHeaderCellDef>Icon</th>
+        <td mat-cell *matCellDef="let user">
+          <div class="avatar_container">
+            <div class="avatar" [style.width.px]="50" [style.height.px]="50">
+              <img class="avatar__image" src="data:image/;base64,{{user.avatar}}" (click)="redirect(user.id)" matRipple matRippleColor="dark-grey"/>
+            </div>
+            <span class='avatar-status-ingame avatar-status-{{user?.id}}'></span>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="psuedo">
+        <th mat-header-cell *matHeaderCellDef>Pseudo</th>
+        <td mat-cell *matCellDef="let user">{{user.pseudo}}</td>
+      </ng-container>
+      <ng-container matColumnDef="login">
+        <th mat-header-cell *matHeaderCellDef>Login</th>
+        <td mat-cell *matCellDef="let user">{{user.login}}</td>
+      </ng-container>
+      <ng-container matColumnDef="elo">
+        <th mat-header-cell *matHeaderCellDef>Elo</th>
+        <td mat-cell *matCellDef="let user">{{user.elo}}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4"><h1>To MaNy FiLtErS mAtE</h1></td>
+      </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25]" [pageIndex]="pageIndex" [pageSize]="pageSize" [length]="friendlist.length" aria-label="Select friendlist page"></mat-paginator>
+  </span>
+  <ng-template #responsiveElseBlock>
+    <mat-form-field [style.width.%]="100" style="margin-bottom: -1.25em">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="icon">
+        <th mat-header-cell *matHeaderCellDef>Icon</th>
+        <td mat-cell *matCellDef="let user">
+          <div class="avatar_container">
+            <div class="avatar" [style.width.px]="50" [style.height.px]="50">
+              <img class="avatar__image" src="data:image/;base64,{{user.avatar}}" (click)="redirect(user.id)" matRipple matRippleColor="dark-grey"/>
+            </div>
+            <span class='avatar-status-ingame avatar-status-{{user?.id}}'></span>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="psuedo">
+        <th mat-header-cell *matHeaderCellDef>Login</th>
+        <td mat-cell *matCellDef="let user">{{user.login}} "{{user.pseudo}}"</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4"><h1>To MaNy FiLtErS mAtE</h1></td>
+      </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5]" [pageIndex]="pageIndex" [pageSize]="pageSize" [length]="friendlist.length" aria-label="Select friendlist page"></mat-paginator>
+  </ng-template>
+</span>
+<ng-template #elseBlock>
+  <img src="/assets/illbeyourfriend.png" [style.width.%]="100" alt="I'll be your only friend" title="I'll be your only friend" />
+</ng-template>

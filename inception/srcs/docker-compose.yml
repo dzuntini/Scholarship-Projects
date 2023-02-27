@@ -1,0 +1,73 @@
+version: '3'
+
+services:
+  nginx:
+    build: ./nginx/
+    image: nginx
+    container_name: nginx
+    ports:
+      - 443:443
+    networks:
+      - inception
+    restart: unless-stopped
+    volumes:
+      - /home/user42/data/wordpress:/var/www/html
+  
+  wordpress:
+    build: ./wp/
+    image: wordpress
+    container_name: wordpress
+    networks:
+      - inception
+    restart: on-failure
+    depends_on:
+      - mariadb
+    volumes:
+      - /home/user42/data/wordpress:/var/www/html
+    environment:
+      - DOMAIN_NAME=${DOMAIN_NAME}
+      - MARIADB_USER=${MARIADB_USER}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+      - MARIADB_DATABASE=${MARIADB_DATABASE}
+      - WORDPRESS_ADMIN=${WORDPRESS_ADMIN}
+      - WORDPRESS_ADMIN_PASS=${WORDPRESS_ADMIN_PASS}
+      - WORDPRESS_USER=${WORDPRESS_USER}
+      - WORDPRESS_USER_PASS=${WORDPRESS_USER_PASS}
+    env_file:
+      - .env
+
+  mariadb:
+    build: ./sql/
+    image: mariadb
+    container_name: mariadb
+    networks:
+      - inception
+    restart: on-failure
+    volumes:
+      - /home/user42/data/mariadb:/var/lib/mysql
+    environment:
+      - MARIADB_USER=${MARIADB_USER}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+      - MARIADB_DATABASE=${MARIADB_DATABASE}
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+    env_file:
+      - .env
+networks:
+  inception:
+    driver: bridge
+
+volumes:
+  v_mariadb:
+    driver: local
+    driver_opts:
+      o: 'bind'
+      type: 'none'
+      device: '/home/user42/data/volumes'
+      
+  v_wordpress:
+    driver: local
+    driver_opts:
+      o: 'bind'
+      type: 'none'
+      device: '/home/user42/data/volumes'
+      

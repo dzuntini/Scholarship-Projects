@@ -1,0 +1,13 @@
+<app-navigation-bar></app-navigation-bar>
+<div class="page-wrapper">
+  <button class="game-buttons" *ngFor="let tile of tiles" (click)="joinAs(tile.beLike, tile.gameType)" mat-raised-button color="primary">
+    {{tile.text}}
+    <span *ngIf="tile.waiting === true">
+    <br />
+    {{waitChal[0]}}
+    <br />
+    {{waitChal[1]}}
+    </span>
+  </button>
+  <!-- <button class="game-buttons" (click)="freeMapGame()" mat-raised-button color="primary">free map games</button> -->
+</div>

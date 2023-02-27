@@ -1,0 +1,30 @@
+<app-navigation-bar></app-navigation-bar>
+<mat-paginator [length]="games.length" [pageSize]="pageSize" [pageSizeOptions]="[6, 12, 18, 24, 30]" [pageIndex]="pageIndex" (page)="changePrintedGames($event)" aria-label="Select page">
+</mat-paginator>
+<div class="game-grid">
+  <div class="game-slot" *ngFor="let game of printedGames">
+    <div class="game-slot-spacer">
+	  <mat-card class="game-card">
+	    <mat-card-header>
+	      <mat-card-title>{{titleMe(game)}}</mat-card-title>
+	    </mat-card-header>
+		<mat-card-content>
+		  <p>
+			<span *ngIf="!game.gameType">un</span>ranked game
+		  </p>
+		  <p>player 1: {{game.p1.pseudo}}
+		  <br>score: {{game.p1.score}}</p>
+		  <p>player 2: {{game.p2.pseudo}}
+		    <span *ngIf="game.p2.pseudo !== 'matchmaking'">
+		      <br>score: {{game.p2.score}}
+		    </span>
+		  </p>
+		</mat-card-content>
+	    <mat-card-actions class="join-actions">
+	      <button class="join-button" *ngIf="game.status === 'matchmaking'" mat-raised-button color="accent" (click)="joinAs(_BeLike.Player, game.UUID)">Join as player</button>
+	      <button class="join-button" mat-raised-button color="accent" (click)="joinAs(_BeLike.Spectator, game.UUID)">Join as spectator</button>
+	    </mat-card-actions>
+	  </mat-card>
+    </div>
+  </div>
+</div>

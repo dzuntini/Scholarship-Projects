@@ -1,0 +1,15 @@
+<mat-toolbar class="navbar" color="primary">
+  <div class="button-wrapper">
+    <button class="nav-button home" mat-button (click)="redirect('')">home</button>
+    <button class="nav-button LiveGames" mat-button (click)="redirect('LiveGames')">games</button>
+    <button class="nav-button Ranking" mat-button (click)="redirect('Ranking')">rankings</button>
+    <button class="nav-button Chat" mat-button (click)="redirect('Chat')">chat</button>
+  </div>
+  <div class="profile-wrapper">
+    <div class="avatar">
+      <button class="avatar-profile" [ngStyle]="{'background-image': 'url(' + src + ')'}"  (click)="redirect('Profile')" matRipple matRippleColor="dark-grey"></button>
+      <span class='avatar-status-ingame avatar-status-{{user?.id}}'></span>
+    </div>
+    <button mat-flat-button (click)="redirect('Logout')" color="warn" style="margin-left: 10px;">Logout</button>
+  </div>
+</mat-toolbar>

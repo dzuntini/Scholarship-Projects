@@ -1,0 +1,127 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model APPUser {
+  id     Int    @id @unique @default(autoincrement())
+  login  String @unique
+  pseudo String
+  avatar String
+  twoFactorAuthSecret String @default("")
+  twoFactorAuthEnabled Boolean @default(false)
+
+  elo            Int                 @default(1000)
+  nb_played_game Int                 @default(0)
+  player1        APPUsersPlayGames[] @relation(name: "player1")
+  player2        APPUsersPlayGames[] @relation(name: "player2")
+  nb_victory     Int                 @default(0)
+  nb_defeat      Int                 @default(0)
+
+  Access    Access[]
+  messages  Message[]
+  blocker   Blocks[]            @relation(name: "blocker")
+  blocked   Blocks[]            @relation(name: "blocked")
+  following   Follows[]            @relation(name: "following")
+  followed   Follows[]            @relation(name: "followed")
+}
+
+model Follows {
+	following APPUser @relation(fields: [followingID], references: [id], name: "following")
+	followingID Int
+	followed APPUser @relation(fields: [followedID], references: [id], name: "followed")
+	followedID Int
+
+	@@id([followingID, followedID])
+}
+
+model Blocks {
+  blocker   APPUser @relation(fields: [blockerID], references: [id], name: "blocker")
+  blockerID Int
+  blocked   APPUser @relation(fields: [blockedID], references: [id], name: "blocked")
+  blockedID Int
+
+  @@id([blockerID, blockedID])
+}
+
+model Room {
+  id       Int                 @id @unique @default(autoincrement())
+  name     String
+  haspass  Boolean             @default(false)
+  isdm     Boolean             @default(false)
+  password String?
+  visible  Boolean             @default(false)
+  Access   Access[]
+  messages Message[]
+}
+
+model Authorization {
+  id     Int      @id @unique @default(autoincrement())
+  name   String
+  Access Access[]
+}
+
+model Message {
+  id        Int      @id @unique @default(autoincrement())
+  content   String
+  timestamp DateTime @default(now())
+  room      Room     @relation(fields: [roomID], references: [id], onDelete: Cascade)
+  roomID    Int
+  appuser   APPUser  @relation(fields: [appuserID], references: [id])
+  appuserID Int
+}
+
+model Game {
+  id        Int                 @id @unique @default(autoincrement())
+  ranked    Boolean             @default(false)
+  timestamp DateTime            @default(now())
+  players   APPUsersPlayGames[]
+  p1_score  Int                 
+  p2_score  Int                 
+  status    Game_Status[]
+}
+
+model APPUsersPlayGames {
+  Player1   APPUser @relation(fields: [player1ID], references: [id], name: "player1")
+  player1ID Int
+  Player2   APPUser @relation(fields: [player2ID], references: [id], name: "player2")
+  player2ID Int
+  game      Game    @relation(fields: [gameID], references: [id])
+  gameID    Int     @unique
+
+  @@id([player1ID, player2ID, gameID])
+}
+
+model Status {
+  id Int @id @unique @default(autoincrement())
+  status String
+
+  games Game_Status[]
+}
+
+model Game_Status {
+  Game 		Game	@relation(fields: [GameID], references: [id])
+  GameID	Int
+  Status	Status	@relation(fields: [StatusID], references: [id])
+  StatusID Int
+
+  @@id([GameID, StatusID])
+}
+
+model Access {
+  appuser         APPUser       @relation(fields: [appuserID], references: [id])
+  appuserID       Int
+  Authorization   Authorization @relation(fields: [AuthorizationID], references: [id])
+  AuthorizationID Int
+  room            Room          @relation(fields: [roomID], references: [id], onDelete: Cascade)
+  roomID          Int
+
+  @@id([appuserID, AuthorizationID, roomID])
+}

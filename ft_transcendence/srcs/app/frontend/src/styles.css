@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+	height: 100vh;
+	min-width: 180px;
+	overflow: hidden;
+	margin: 0;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+	background-color: #303030;
+	color: lightslategray;
+}
+
+/* @media (min-width: 0) and (max-width: 500px) { */
+  /* body { overflow-x: scroll; } */
+/* } */

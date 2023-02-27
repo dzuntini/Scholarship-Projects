@@ -1,0 +1,115 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button-wrapper {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.nav-button {
+  text-transform: capitalize;
+}
+
+.profile-wrapper {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.avatar-profile {
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  background-repeat:no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+
+.avatar {
+  position:relative;
+  display:inline-block;
+}
+
+.avatar-status-offline, .avatar-status-online, .avatar-status-ingame {
+  width:17px;
+  height:17px;
+  position:absolute;
+  bottom:2%;
+  right:2%;
+  border-radius:100%;
+}
+
+.avatar-status-offline {
+  background:#CC4400;
+}
+
+.avatar-status-online {
+  background:#99CC00;
+}
+
+.avatar-status-ingame {
+  background:#0055DD;
+}
+
+@media (max-width: 453px) {
+  .navbar {
+    height: 72px;
+  }
+  @media (max-width: 323px) {
+	.navbar {
+	  height: 100px;
+	}
+    .profile-wrapper {
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    @media (max-width: 274px) {
+      .navbar {
+        flex-direction: column-reverse;
+      }
+      .profile-wrapper {
+           flex-direction: row;
+           justify-content: space-around;
+      }
+      .button-wrapper {
+        flex-wrap:nowrap;
+      }
+      @media (max-width: 273px) {
+        .navbar {
+          height: 108px;
+          flex-direction: row;
+          justify-content: space-between;
+        }
+        .profile-wrapper {
+          flex-direction: column;
+          justify-content: space-around;
+        }
+        .button-wrapper {
+          flex-wrap: wrap;
+          justify-content: space-around;
+        }
+        @media (max-width: 273px) {
+          .button-wrapper {
+            min-height: 100px;
+          }
+		  @media (max-width: 255px) {
+		    .navbar {
+              min-height: 144px;
+            }
+		  }
+        }
+      }
+    }
+  }
+}

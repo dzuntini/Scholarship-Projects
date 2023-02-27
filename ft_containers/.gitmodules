@@ -1,0 +1,3 @@
+[submodule "42TESTERS-CONTAINERS"]
+	path = 42TESTERS-CONTAINERS
+	url = git@github.com:Mazoise/42TESTERS-CONTAINERS.git

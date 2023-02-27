@@ -1,0 +1,64 @@
+mat-sidenav {
+  margin-top: 0.5%;
+  width: 10%;
+  border-right: none;
+  background: #7b1fa2;
+  color: white;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+
+.avatar {
+  overflow: hidden;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+}
+
+.avatar__image {
+  height: 100%;
+  width: 100%;
+}
+
+.profile-section-header {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#unres-friend-list-container {
+  height: 100%;
+  width: 100%;
+  margin-top: 96px;
+}
+
+#res-friend-list-container {
+  height: 100%;
+  width: 100%;
+  margin-top: 96px;
+}
+
+.image-container {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  margin-top: 96px;
+}
+
+mat-form-field {
+  margin-right: 12px;
+}
+
+mat-tab-group, .mat-tab-text-label {
+  background-color: rgba(0, 0, 0, 0.38);
+  color: rgb(232, 230, 227);
+  text-transform: uppercase;
+  font-weight: bold;
+}

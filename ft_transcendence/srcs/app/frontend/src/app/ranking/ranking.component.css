@@ -1,0 +1,59 @@
+.ranking-row {
+  height: auto;
+  width: 100%;
+}
+
+mat-sidenav {
+  margin-top: 0.5%;
+  width: 10%;
+  border-right: none;
+  background: #7b1fa2;
+  color: white;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+
+.avatar {
+  overflow: hidden;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 0;
+}
+
+.avatar__image {
+  height: 100%;
+  width: 100%;
+}
+
+html, body {
+  height: 100%;
+}
+
+.avatar_container {
+  position:relative;
+  display:inline-block;
+}
+
+.avatar-status-offline, .avatar-status-online, .avatar-status-ingame {
+  width:17px;
+  height:17px;
+  position:absolute;
+  bottom:2%;
+  right:2%;
+  border-radius:100%;
+}
+
+.avatar-status-offline {
+  background:#CC4400;
+}
+
+.avatar-status-online {
+  background:#99CC00;
+}
+
+.avatar-status-ingame {
+  background:#0055DD;
+}

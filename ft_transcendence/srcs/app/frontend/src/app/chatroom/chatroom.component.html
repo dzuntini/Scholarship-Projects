@@ -1,0 +1,86 @@
+<app-navigation-bar></app-navigation-bar>
+<div class="page-wrapper">
+  <span class="chat-room-show-container">
+    <div class="room-list">
+      <button
+        mat-raised-button
+        *ngFor="let room of roomsList"
+        class="room-button"
+        color="primary"
+        (click)="JoinRoomList(room.id, room.haspass)"
+      >
+        <span *ngIf="!room.isdm">
+          <span *ngIf="room.visible">
+            <mat-icon style="font-size: auto;" fontIcon="visibility_outline"></mat-icon>
+          </span>
+          <span *ngIf="!room.visible">
+            <mat-icon style="font-size: auto;" fontIcon="visibility_off"></mat-icon>
+          </span>
+          <span *ngIf="room.haspass">
+            <mat-icon style="font-size: auto;" fontIcon="lock"></mat-icon>
+          </span>
+          <span *ngIf="!room.haspass">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
+            <span class="material-symbols-outlined">
+              lock_open
+            </span>
+          </span>
+        </span>
+        <span *ngIf="room.isdm">
+          <mat-icon style="font-size: auto;" fontIcon="person"></mat-icon>
+        </span>
+        <span style="width:auto; text-align: right;" (click)="JoinRoomList(room.id, room.haspass)">
+          {{room.name}}
+        </span>
+      </button>
+    </div>
+	<button mat-raised-button class="room-button draft" color="primary" (click)="this.draft()">draft</button>
+    <span class="chat-room-display-joaddel">
+      <span class="chat-button-addel">
+        <button class="chat-button-joaddel " (click)="JoinRoomButton()">join room</button>
+        <button class="chat-button-joaddel " (click)="ModifyRoom()">modify room</button>
+      </span>
+      <span class="chat-button-addel">
+        <button class="chat-button-joaddel" (click)="CreateRoom()">+ create room</button>
+        <button id="deletebutton" class="chat-button-joaddel" (click)="DeleteRoom()">- delete room</button>
+      </span>
+    </span>
+  </span>
+  <span class="chat-messages-container">
+    <span class="chat-messages-list message-list">
+    </span>
+    <span class="chat-messages-input">
+      <textarea id="chat-area" [defaultValue]="" class="chat-messages-text" type="text" (keydown.enter)="SendMessage(undefined)" [(ngModel)]="message" ></textarea>
+      <button class="chat-button-submit" (click)="SendMessage(undefined)"> Send </button>
+    </span>
+  </span>
+  <div class="chat-user-container">
+    <div class="chat-current-room">
+      <p>Current Room : </p>
+      <h3>{{this.current_room.name}}</h3>
+    </div>
+	<!-- <span class="channel-users-list"> -->
+      <div *ngFor="let crntUser of this.channelUsers" class="room-buttons">
+        <button class="user-button"  color="primary">
+          <div class="user-pseudo">{{crntUser.pseudo}}{{this.showStatus(crntUser.id)}}</div>
+          <div class="dropdown-content">
+            <button class="dpdown" (click)="redirect(crntUser)">Go to Profile</button>
+            <span *ngIf="crntUser.id !== user.id">
+              <button class="dpdown" (click)="dmWithSomeone(crntUser)">Direct Message</button>
+	  	        <button class="dpdown" (click)="InvitGame(crntUser.id, gameType.unranked)">Unanked Game Invitation</button>
+	  	        <button class="dpdown" (click)="InvitGame(crntUser.id, gameType.ranked)">Ranked Game Invitation</button>
+	  	        <div *ngIf="(this.searchStatus(user.id) === 1 || this.searchStatus(user.id) === 2)" class="admin-display">
+                <hr class="splitter dpdown admin" />
+                <button class="dpdown admin" (click)="muteUser(crntUser)">Mute/Unmute User</button>
+                <button class="dpdown admin"(click)="kickUser(crntUser)">Kick User</button>
+                <button class="dpdown admin" (click)="banUser(crntUser)">Ban/Unban User</button>
+                <button class="dpdown admin"(click)="promotionUser(crntUser)">Promote/Demote User</button>
+                <button class="dpdown admin" (click)="changeOwnership(crntUser)">Give Ownership</button>
+	  	        </div>
+            </span>
+          </div>
+        </button>
+      </div>
+	<!-- </span> -->
+  </div>
+</div>

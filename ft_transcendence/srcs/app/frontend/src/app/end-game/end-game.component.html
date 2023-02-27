@@ -1,0 +1,13 @@
+<div mat-dialog-content class="endInfos">
+  <p class="typeEnd">{{data.type}}</p>
+  <span *ngIf="data.winner !== null">
+    <p class="winner">winner: {{data.winner}}</p>
+    <div class="scores" *ngIf="data.score !== null">
+      <p class="player1"> player1: {{data.score.p1}}</p>
+      <p class="player1"> player2: {{data.score.p2}}</p>
+    </div>
+  </span>
+  <mat-dialog-actions>
+    <button mat-button (click)="returnHome()">return home</button>
+  </mat-dialog-actions>
+</div>

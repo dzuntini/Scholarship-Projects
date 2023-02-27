@@ -1,0 +1,145 @@
+<app-navigation-bar></app-navigation-bar>
+<div class="game-wrapper">
+  <form class="game-settings" action="game-settings" method="post">
+	<span class="settings">
+	  <span *ngIf="errorForm" class="errorForm">* invalid field value</span>
+      <div class="setting">
+	  	<label class="option" for="scoreColor"><span *ngIf="errorForm" class="errorForm">* </span>score color</label>
+	  	<select name="scoreColor" class="scoreColor">
+	  	  <option value=1>aqua</option>
+	  	  <option value=2>fuchsia</option>
+	  	  <option value=3>lime</option>
+	  	  <option value=4>olive</option>
+	  	  <option value=5>silver</option>
+	  	  <option value=6>yellow</option>
+	  	  <option value=7>black</option>
+	  	  <option value=8>gray</option>
+	  	  <option value=9>maroon</option>
+	  	  <option value=10>purple</option>
+	  	  <option value=11>teal</option>
+	  	  <option value=12>blue</option>
+	  	  <option value=13>green</option>
+	  	  <option value=14>navy</option>
+	  	  <option value=15>red</option>
+	  	  <option value=16 selected>white</option>
+	  	</select>
+      </div>
+        <div class="setting">
+	  	    <label class="option" for="boardColor"><span *ngIf="errorBallColor" class="errorForm">* </span>board color</label>
+	  	    <select matNativeControl name="boardColor" class="boardColor">
+	  	      <option value=1>aqua</option>
+	  	      <option value=2>fuchsia</option>
+	  	      <option value=3>lime</option>
+	  	      <option value=4>olive</option>
+	  	      <option value=5>silver</option>
+	  	      <option value=6>yellow</option>
+	  	      <option value=7>black</option>
+	  	      <option value=8>gray</option>
+	  	      <option value=9>maroon</option>
+	  	      <option value=10>purple</option>
+	  	      <option value=11>teal</option>
+	  	      <option value=12>blue</option>
+	  	      <option value=13 selected>green</option>
+	  	      <option value=14>navy</option>
+	  	      <option value=15>red</option>
+	  	      <option value=16>white</option>
+	  	    </select>
+        </div>
+        <div class="setting">
+          <label class="option" for="wallColor"><span *ngIf="errorWallColor" class="errorForm"> *</span>walls color</label>
+	  	    <select name="wallColor" class="wallColor">
+	  	      <option value=1>aqua</option>
+	  	      <option value=2>fuchsia</option>
+	  	      <option value=3>lime</option>
+	  	      <option value=4>olive</option>
+	  	      <option value=5>silver</option>
+	  	      <option value=6>yellow</option>
+	  	      <option value=7 selected>black</option>
+	  	      <option value=8>gray</option>
+	  	      <option value=9>maroon</option>
+	  	      <option value=10>purple</option>
+	  	      <option value=11>teal</option>
+	  	      <option value=12>blue</option>
+	  	      <option value=13>green</option>
+	  	      <option value=14>navy</option>
+	  	      <option value=15>red</option>
+	  	      <option value=16>white</option>
+	  	    </select>
+        </div>
+        <div class="setting">
+	  	    <label class="option" for="player1"><span *ngIf="errorPlayer1" class="errorForm">* </span>player 1 color</label>
+	  	    <select name="player1" class="player1">
+	  	      <option value=1>aqua</option>
+	  	      <option value=2>fuchsia</option>
+	  	      <option value=3>lime</option>
+	  	      <option value=4>olive</option>
+	  	      <option value=5>silver</option>
+	  	      <option value=6>yellow</option>
+	  	      <option value=7>black</option>
+	  	      <option value=8>gray</option>
+	  	      <option value=9>maroon</option>
+	  	      <option value=10>purple</option>
+	  	      <option value=11>teal</option>
+	  	      <option value=12>blue</option>
+	  	      <option value=13>green</option>
+	  	      <option value=14>navy</option>
+	  	      <option value=15 selected>red</option>
+	  	      <option value=16>white</option>
+	  	    </select>
+        </div>
+        <div class="setting">
+	  	    <label class="option" for="player2"><span *ngIf="errorPlayer2" class="errorForm">* </span>player 2 color</label>
+	  	    <select name="player2" class="player2">
+	  	      <option value=1>aqua</option>
+	  	      <option value=2>fuchsia</option>
+	  	      <option value=3>lime</option>
+	  	      <option value=4>olive</option>
+	  	      <option value=5>silver</option>
+	  	      <option value=6>yellow</option>
+	  	      <option value=7>black</option>
+	  	      <option value=8>gray</option>
+	  	      <option value=9>maroon</option>
+	  	      <option value=10>purple</option>
+	  	      <option value=11>teal</option>
+	  	      <option value=12 selected>blue</option>
+	  	      <option value=13>green</option>
+	  	      <option value=14>navy</option>
+	  	      <option value=15>red</option>
+	  	      <option value=16>white</option>
+	  	    </select>
+        </div>
+        <div class="setting">
+	  	    <label class="option" for="ballColor"><span *ngIf="errorBallColor" class="errorForm">* </span>ball color</label>
+	  	    <select name="ballColor" class="ballColor">
+	  	      <option value=1>aqua</option>
+	  	      <option value=2>fuchsia</option>
+	  	      <option value=3>lime</option>
+	  	      <option value=4>olive</option>
+	  	      <option value=5>silver</option>
+	  	      <option value=6>yellow</option>
+	  	      <option value=7>black</option>
+	  	      <option value=8>gray</option>
+	  	      <option value=9>maroon</option>
+	  	      <option value=10>purple</option>
+	  	      <option value=11>teal</option>
+	  	      <option value=12>blue</option>
+	  	      <option value=13>green</option>
+	  	      <option value=14>navy</option>
+	  	      <option value=15>red</option>
+	  	      <option value=16 selected>white</option>
+	  	    </select>
+        </div>
+        <div class="setting">
+	  	    <label class="option" for="ballShape"><span *ngIf="errorBallShape" class="errorForm">* </span>ball shape</label>
+	  	    <select name="ballShape" class="ballShape">
+	  	      <option value="false" selected>round</option>
+	  	      <option value="true">square</option>
+	  	    </select>
+        </div>
+	</span>
+    <button class="start" type="button" (click)="readyTo()">start game</button>
+  </form>
+  <div class="game">
+	  <canvas class="board"></canvas>
+  </div>
+</div>

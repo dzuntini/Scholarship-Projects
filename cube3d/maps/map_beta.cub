@@ -1,0 +1,13 @@
+NO ./textures/redbrick.xpm
+SO ./textures/redbrick.xpm
+WE ./textures/redbrick.xpm
+EA ./textures/redbrick.xpm
+
+F 60,000,60
+C 0,180,180
+
+11111
+10001
+10S01
+10001
+11111

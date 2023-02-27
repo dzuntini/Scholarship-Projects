@@ -1,0 +1,20 @@
+<div class="page-wrapper">
+  <h1 mat-dialog-title class="dialog-title">Modify # {{a}}</h1>
+  <mat-dialog-content class="joinwindow">
+    <form [formGroup]="chatModifyRoom" (ngSubmit)="modifyRoom()">
+      <mat-form-field appearance="fill">
+        <mat-label>Name of the room</mat-label>
+        <input matInput formControlName="name" minlength="3" maxlength="15"/>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" />
+      </mat-form-field>
+      <p><mat-checkbox  formControlName="visible">Visible</mat-checkbox></p>
+      <div mat-dialog-actions>
+        <button mat-raised-button type="button" (click)="onNoClick()">Come back</button>
+        <button mat-raised-button  type="submit" (click)="modifyRoom()" [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+      </div>
+    </form>
+  </mat-dialog-content>
+</div>

@@ -1,0 +1,64 @@
+version: '3.8'
+
+networks:
+  transworks:
+    driver: bridge
+
+services:
+  postgres:
+    container_name: postgres
+    build: 
+      context: ./requirements/postgres
+      args:
+        PGDATA: ${PGDATA}
+        POSTGRES_USER: ${POSTGRES_USER}
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        POSTGRES_DB: ${POSTGRES_DB}
+    networks:
+      - transworks
+    volumes:
+      - ./srcs/transbase:/usr/local/pgsql/data:Z
+    environment:
+      PGDATA: ${PGDATA}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    expose:
+      - 5432/tcp
+    restart: on-failure
+
+  app:
+    container_name: app
+    build: ./requirements/app
+    volumes:
+      - ./srcs/app:/ft_transcendence/app:Z
+    expose:
+      - 3000/tcp
+      - 3001/tcp
+    ports:
+      - 3000:3000/tcp
+      - 3001:3001/tcp
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      API42_UID: ${API42_UID}
+      API42_SEC: ${API42_SEC}
+      API42_AUTHORIZATION_URL: ${API42_AUTHORIZATION_URL}
+      API42_CALLBACK_URL: ${API42_CALLBACK_URL}
+      API42_TOKEN_URL: ${API42_TOKEN_URL}
+      NEST_JWT_SECRET: ${NEST_JWT_SECRET}
+      NEST_JWT_EXPIRES_IN: ${NEST_JWT_EXPIRES_IN}
+      URI: ${URI}
+      POST: ${POST}
+      PORT: ${PORT}
+      HOST: ${HOST}
+      NG_APP_WS_PORT: ${NG_APP_WS_PORT}
+      NG_APP_WS_URI: ${NG_APP_WS_URI}
+      IP_CONFIG: Ipconfig getifaddr en0
+    networks:
+      - transworks
+    restart: on-failure
